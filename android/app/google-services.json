@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "174805097969",
+    "project_id": "app-cronograma-de-receitas",
+    "storage_bucket": "app-cronograma-de-receitas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174805097969:android:aadf76a21a8b537510b850",
+        "android_client_info": {
+          "package_name": "com.example.app_cronograma_receitas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174805097969-79lhqjdmo6s0ogr2po4jae55smsdfro9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAafC8HSJwgW1wmxl1N_vvToxg5WWn2HPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174805097969-79lhqjdmo6s0ogr2po4jae55smsdfro9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "174805097969-qt3kt25bjtc9m1bh722mgb2blsri6e1d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.appCronogramaReceitas"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
