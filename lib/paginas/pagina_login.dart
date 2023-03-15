@@ -59,6 +59,23 @@ class _PaginaLoginState extends State<PaginaLogin> {
                     child: ListView(
                       shrinkWrap: true,
                       children: [
+                        const Text(
+                          'Receitaria',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 70.0, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        Image.asset(
+                          'assets/images/panela_1.png',
+                          width: 300,
+                          height: 300,
+                        ),
+                        const SizedBox(
+                          height: 40.0,
+                        ),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           autocorrect: false,
@@ -110,6 +127,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
                             textStyle: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -128,13 +146,11 @@ class _PaginaLoginState extends State<PaginaLogin> {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
                         TextButton(
                           style: TextButton.styleFrom(
+                            foregroundColor: Colors.red,
                             textStyle: const TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

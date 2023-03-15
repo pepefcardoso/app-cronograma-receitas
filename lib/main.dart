@@ -69,7 +69,9 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Firebase Auth',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(primarySwatch: Colors.deepOrange),
+          theme: ThemeData(
+            scaffoldBackgroundColor: const Color.fromRGBO(254, 218, 68, 1),
+          ),
           home: const PaginaSplash(),
           routes: {
             PaginaInicial.nomeRota: (context) => const PaginaInicial(),
