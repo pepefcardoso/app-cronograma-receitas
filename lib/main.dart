@@ -1,10 +1,19 @@
+import 'package:app_cronograma_receitas/blocs/autentica%C3%A7%C3%A3o/autenticacao_bloc.dart';
+import 'package:app_cronograma_receitas/blocs/perfil/perfil_cubit.dart';
+import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
+import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_inicial.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_login.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_perfil.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_registro.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_splash.dart';
+import 'package:app_cronograma_receitas/repositorios/autenticacao.dart';
+import 'package:app_cronograma_receitas/repositorios/perfil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import '/paginas/pagina_login.dart';
-import '/repositorios/autenticacao.dart';
-import '/repositorios/perfil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,38 +31,38 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AuthRepository>(
-          create: (context) => AuthRepository(
+        RepositoryProvider<RepositorioAutenticacao>(
+          create: (context) => RepositorioAutenticacao(
             firebaseFirestore: FirebaseFirestore.instance,
             firebaseAuth: FirebaseAuth.instance,
           ),
         ),
-        RepositoryProvider<ProfileRepository>(
-          create: (context) => ProfileRepository(
+        RepositoryProvider<RepositorioPerfil>(
+          create: (context) => RepositorioPerfil(
             firebaseFirestore: FirebaseFirestore.instance,
           ),
         ),
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<AuthBloc>(
-            create: (context) => AuthBloc(
-              context.read<AuthRepository>(),
+          BlocProvider<AutenticacaoBloc>(
+            create: (context) => AutenticacaoBloc(
+              context.read<RepositorioAutenticacao>(),
             ),
           ),
           BlocProvider<SigninCubit>(
             create: (context) => SigninCubit(
-              context.read<AuthRepository>(),
+              context.read<RepositorioAutenticacao>(),
             ),
           ),
           BlocProvider<SignupCubit>(
             create: (context) => SignupCubit(
-              context.read<AuthRepository>(),
+              context.read<RepositorioAutenticacao>(),
             ),
           ),
-          BlocProvider<ProfileCubit>(
-            create: (context) => ProfileCubit(
-              profileRespository: context.read<ProfileRepository>(),
+          BlocProvider<PerfilCubit>(
+            create: (context) => PerfilCubit(
+              repositorioPerfil: context.read<RepositorioPerfil>(),
             ),
           ),
         ],
@@ -61,12 +70,12 @@ class MyApp extends StatelessWidget {
           title: 'Firebase Auth',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primarySwatch: Colors.deepOrange),
-          home: const SplashPage(),
+          home: const PaginaSplash(),
           routes: {
-            HomePage.routeName: (context) => const HomePage(),
-            ProfilePage.routeName: (context) => const ProfilePage(),
-            SignInPage.routeName: (context) => const SignInPage(),
-            SignupPage.routeName: (context) => const SignupPage(),
+            PaginaInicial.nomeRota: (context) => const PaginaInicial(),
+            PaginaPerfil.nomeRota: (context) => const PaginaPerfil(),
+            PaginaLogin.nomeRota: (context) => const PaginaLogin(),
+            PaginaRegistro.nomeRota: (context) => const PaginaRegistro(),
           },
         ),
       ),

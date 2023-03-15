@@ -1,72 +1,159 @@
+import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_registro.dart';
+import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaginaLogin extends StatefulWidget {
-  const PaginaLogin({super.key});
-
   static const String nomeRota = '/login';
 
+  const PaginaLogin({super.key});
+
   @override
-  State<PaginaLogin> createState() => _PaginaLogin();
+  State<PaginaLogin> createState() => _PaginaLoginState();
 }
 
-class _PaginaLogin extends State<PaginaLogin> {
+class _PaginaLoginState extends State<PaginaLogin> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  String? _email, _senha;
+
+  void _submit() {
+    setState(() {
+      _autovalidateMode = AutovalidateMode.always;
+    });
+
+    final form = _formKey.currentState;
+
+    if (form == null || !form.validate()) return;
+
+    form.save();
+
+    context.read<SigninCubit>().signin(
+          email: _email!,
+          senha: _senha!,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      body: Column(
-        children: [
-          Container(
-            alignment: Alignment.bottomCenter,
-            color: Theme.of(context).colorScheme.primary,
-            height: 200,
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 25.0),
-              child: Text(
-                'Cronograma de Receitas',
-                softWrap: true,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                  fontSize: 45.0,
-                  fontWeight: FontWeight.bold,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: BlocConsumer<SigninCubit, SigninState>(
+          listener: (context, state) {
+            if (state.statusSignIn == StatusSignIn.erro) {
+              dialogoErro(context, state.erro);
+            }
+          },
+          builder: (context, state) {
+            return Scaffold(
+              body: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Form(
+                    key: _formKey,
+                    autovalidateMode: _autovalidateMode,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            labelText: 'Email',
+                            prefixIcon: Icon(Icons.email),
+                          ),
+                          validator: (String? value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Email é obrigatório';
+                            }
+                            if (!isEmail(value.trim())) {
+                              return 'Insira um email válido';
+                            }
+                            return null;
+                          },
+                          onSaved: (String? value) {
+                            _email = value;
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            labelText: 'Senha',
+                            prefixIcon: Icon(Icons.lock),
+                          ),
+                          validator: (String? value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Senha é obrigatório';
+                            }
+                            if (value.trim().length < 8) {
+                              return 'Senha precisa ter pelo menos 8 caracteres';
+                            }
+                            return null;
+                          },
+                          onSaved: (String? value) {
+                            _senha = value;
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            textStyle: const TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          ),
+                          onPressed:
+                              state.statusSignIn == StatusSignIn.submetendo
+                                  ? null
+                                  : _submit,
+                          child: Text(
+                              state.statusSignIn == StatusSignIn.submetendo
+                                  ? 'Carregando...'
+                                  : 'Entrar'),
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          onPressed: () {
+                            state.statusSignIn == StatusSignIn.submetendo
+                                ? null
+                                : Navigator.pushNamed(
+                                    context, PaginaRegistro.nomeRota);
+                          },
+                          child: const Text('Se inscreva aqui!'),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 25.0,
-              horizontal: 10.0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Icon(
-                  Icons.restaurant,
-                  size: 40.0,
-                ),
-                Icon(
-                  Icons.menu_book,
-                  size: 40.0,
-                ),
-                Icon(
-                  Icons.kitchen,
-                  size: 40.0,
-                ),
-                Icon(
-                  Icons.lunch_dining,
-                  size: 40.0,
-                ),
-                Icon(
-                  Icons.soup_kitchen,
-                  size: 40.0,
-                ),
-              ],
-            ),
-          )
-        ],
+            );
+          },
+        ),
       ),
     );
   }
