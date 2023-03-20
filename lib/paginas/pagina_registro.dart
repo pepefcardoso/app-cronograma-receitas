@@ -1,4 +1,5 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/campo_registro.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
@@ -61,97 +62,45 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                     reverse: true,
                     shrinkWrap: true,
                     children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          filled: true,
-                          labelText: 'Nome',
-                          prefixIcon: Icon(Icons.account_box),
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Nome é obrigatório';
-                          }
-                          if (value.trim().length < 2) {
-                            return 'Nome precisa ter pelo menos 2 caracteres';
-                          }
-                          return null;
-                        },
+                      CampoRegistro(
+                        nomeCampo: 'Nome',
+                        icone: const Icon(Icons.account_box),
                         onSaved: (String? value) {
                           _nome = value;
                         },
+                        tamanhoMinimo: 2,
                       ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        autocorrect: false,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          filled: true,
-                          labelText: 'Email',
-                          prefixIcon: Icon(Icons.email),
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Email é obrigatório';
-                          }
-                          if (!isEmail(value.trim())) {
-                            return 'Insira um email válido';
-                          }
-                          return null;
-                        },
+                      const SizedBox(height: 20.0),
+                      CampoRegistro(
+                        nomeCampo: 'Email',
+                        icone: const Icon(Icons.email),
                         onSaved: (String? value) {
                           _email = value;
                         },
+                        tamanhoMinimo: 10,
+                        ehEmail: true,
+                        modoTeclado: TextInputType.emailAddress,
                       ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      TextFormField(
+                      const SizedBox(height: 20.0),
+                      CampoRegistro(
                         controller: _senhaController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          filled: true,
-                          labelText: 'Senha',
-                          prefixIcon: Icon(Icons.lock),
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Senha é obrigatória';
-                          }
-                          if (value.trim().length < 8) {
-                            return 'Senha precisa ter pelo menos 8 caracteres!';
-                          }
-                          return null;
-                        },
+                        nomeCampo: 'Senha',
+                        icone: const Icon(Icons.lock),
                         onSaved: (String? value) {
                           _senha = value;
                         },
+                        tamanhoMinimo: 8,
+                        ehSenha: true,
                       ),
-                      const SizedBox(
-                        height: 20.0,
+                      const SizedBox(height: 20.0),
+                      CampoRegistro(
+                        nomeCampo: 'Confirme a Senha',
+                        icone: const Icon(Icons.lock),
+                        tamanhoMinimo: 8,
+                        ehSenha: true,
+                        confirmacaoSenha: _senhaController.text,
                       ),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          filled: true,
-                          labelText: 'Confirme a senha',
-                          prefixIcon: Icon(Icons.lock),
-                        ),
-                        validator: (String? value) {
-                          if (_senhaController.text != value) {
-                            return 'As senhas não são iguais';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
+                      const SizedBox(height: 20.0),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           textStyle: const TextStyle(
