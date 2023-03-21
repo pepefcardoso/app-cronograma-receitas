@@ -2,6 +2,7 @@ import 'package:app_cronograma_receitas/blocs/autentica%C3%A7%C3%A3o/autenticaca
 import 'package:app_cronograma_receitas/blocs/perfil/perfil_cubit.dart';
 import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
+import 'package:app_cronograma_receitas/constantes/temas.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_inicial.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_login.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_perfil.dart';
@@ -69,9 +70,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Firebase Auth',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            scaffoldBackgroundColor: const Color.fromRGBO(254, 218, 68, 1),
-          ),
+          theme: temaClaro,
           home: const PaginaSplash(),
           routes: {
             PaginaInicial.nomeRota: (context) => const PaginaInicial(),

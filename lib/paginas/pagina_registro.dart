@@ -1,9 +1,10 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/campo_data_registro.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_registro.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
-import 'package:validators/validators.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class PaginaRegistro extends StatefulWidget {
   static const String nomeRota = '/registro';
@@ -18,8 +19,8 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   final _senhaController = TextEditingController();
-  String? _nome, _email, _senha;
-  // DateTime? _dataNascimento;
+  late String? _nome, _email, _senha;
+  late DateTime? _dataNascimento;
 
   void _submit() {
     setState(() {
@@ -36,7 +37,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
           nome: _nome!,
           email: _email!,
           senha: _senha!,
-          dataNascimento: DateTime(2022),
+          dataNascimento: _dataNascimento!,
         );
   }
 
@@ -62,11 +63,20 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                     reverse: true,
                     shrinkWrap: true,
                     children: [
+                      CampoDataRegistro(
+                        nomeCampo: 'Data de Nascimento',
+                        icone: const Icon(Icons.calendar_month),
+                        onSaved: (String? value) {
+                          _dataNascimento =
+                              DateFormat('dd/MM/yyyy').parse(value!.trim());
+                        },
+                      ),
+                      const SizedBox(height: 20.0),
                       CampoRegistro(
                         nomeCampo: 'Nome',
                         icone: const Icon(Icons.account_box),
                         onSaved: (String? value) {
-                          _nome = value;
+                          _nome = value!.trim();
                         },
                         tamanhoMinimo: 2,
                       ),
@@ -75,7 +85,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                         nomeCampo: 'Email',
                         icone: const Icon(Icons.email),
                         onSaved: (String? value) {
-                          _email = value;
+                          _email = value!.trim();
                         },
                         tamanhoMinimo: 10,
                         ehEmail: true,

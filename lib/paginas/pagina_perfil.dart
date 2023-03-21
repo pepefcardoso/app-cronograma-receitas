@@ -79,11 +79,6 @@ class _PaginaPerfil extends State<PaginaPerfil> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '-id: ${state.usuario.id}',
-                        style: const TextStyle(fontSize: 18.0),
-                      ),
-                      const SizedBox(height: 10.0),
-                      Text(
                         '-name: ${state.usuario.nome}',
                         style: const TextStyle(fontSize: 18.0),
                       ),
@@ -97,7 +92,6 @@ class _PaginaPerfil extends State<PaginaPerfil> {
                         '-data nascimento: ${state.usuario.dataNascimento.toString()}',
                         style: const TextStyle(fontSize: 18.0),
                       ),
-                      const SizedBox(height: 10.0),
                     ],
                   ),
                 ),

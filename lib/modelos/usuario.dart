@@ -21,7 +21,7 @@ class Usuario extends Equatable {
       id: docUsuario.id,
       nome: dadosUsuario!['name'],
       email: dadosUsuario['email'],
-      dataNascimento: dadosUsuario['data_nascimento'],
+      dataNascimento: dadosUsuario['dataNascimento'].toDate(),
     );
   }
 

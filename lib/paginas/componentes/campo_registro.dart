@@ -28,6 +28,7 @@ class CampoRegistro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       obscureText: ehSenha,
       keyboardType: modoTeclado,
       autocorrect: false,
@@ -37,28 +38,34 @@ class CampoRegistro extends StatelessWidget {
         labelText: nomeCampo,
         prefixIcon: icone,
       ),
-      validator: (String? value) {
-        if (confirmacaoSenha != null && confirmacaoSenha != value) {
-          return 'As senhas não são iguais';
-        }
-
-        if (value == null || value.trim().isEmpty) {
-          return '$nomeCampo é obrigatório';
-        }
-
-        if (value.trim().length < tamanhoMinimo) {
-          return '$nomeCampo precisa ter pelo menos $tamanhoMinimo caracteres';
-        }
-
-        if (ehEmail) {
-          if (!isEmail(value.trim())) {
-            return 'Insira um email válido';
-          }
-        }
-
-        return null;
-      },
+      validator: validateField,
       onSaved: onSaved,
     );
+  }
+
+  String? validateField(String? value) {
+    if (confirmacaoSenha == null) {
+      if (value?.trim().isEmpty ?? true) {
+        return '$nomeCampo é obrigatório';
+      }
+
+      if (value!.trim().length < tamanhoMinimo) {
+        return '$nomeCampo precisa ter pelo menos $tamanhoMinimo caracteres';
+      }
+
+      if (ehEmail && !isEmail(value.trim())) {
+        return 'Insira um email válido';
+      }
+
+      return null;
+    } else {
+      if (confirmacaoSenha != value) {
+        print(confirmacaoSenha);
+        print(value);
+        return 'As senhas não conferem';
+      }
+
+      return null;
+    }
   }
 }
