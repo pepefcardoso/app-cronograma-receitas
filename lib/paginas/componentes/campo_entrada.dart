@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 
-class CampoRegistro extends StatelessWidget {
-  const CampoRegistro({
+class CampoEntrada extends StatelessWidget {
+  const CampoEntrada({
     required this.nomeCampo,
     required this.icone,
     this.onSaved,
@@ -27,19 +27,29 @@ class CampoRegistro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: ehSenha,
-      keyboardType: modoTeclado,
-      autocorrect: false,
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        filled: true,
-        labelText: nomeCampo,
-        prefixIcon: icone,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: TextFormField(
+        controller: controller,
+        obscureText: ehSenha,
+        keyboardType: modoTeclado,
+        autocorrect: false,
+        decoration: InputDecoration(
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade400),
+          ),
+          filled: true,
+          fillColor: Colors.grey.shade200,
+          hintText: nomeCampo,
+          prefixIcon: icone,
+        ),
+        validator: validateField,
+        onSaved: onSaved,
       ),
-      validator: validateField,
-      onSaved: onSaved,
     );
   }
 
@@ -60,8 +70,6 @@ class CampoRegistro extends StatelessWidget {
       return null;
     } else {
       if (confirmacaoSenha != value) {
-        print(confirmacaoSenha);
-        print(value);
         return 'As senhas não conferem';
       }
 

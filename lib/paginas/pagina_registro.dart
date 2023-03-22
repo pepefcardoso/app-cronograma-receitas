@@ -1,6 +1,6 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_data_registro.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/campo_registro.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/campo_entrada.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,7 +72,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                         },
                       ),
                       const SizedBox(height: 20.0),
-                      CampoRegistro(
+                      CampoEntrada(
                         nomeCampo: 'Nome',
                         icone: const Icon(Icons.account_box),
                         onSaved: (String? value) {
@@ -81,7 +81,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                         tamanhoMinimo: 2,
                       ),
                       const SizedBox(height: 20.0),
-                      CampoRegistro(
+                      CampoEntrada(
                         nomeCampo: 'Email',
                         icone: const Icon(Icons.email),
                         onSaved: (String? value) {
@@ -92,7 +92,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                         modoTeclado: TextInputType.emailAddress,
                       ),
                       const SizedBox(height: 20.0),
-                      CampoRegistro(
+                      CampoEntrada(
                         controller: _senhaController,
                         nomeCampo: 'Senha',
                         icone: const Icon(Icons.lock),
@@ -103,7 +103,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
                         ehSenha: true,
                       ),
                       const SizedBox(height: 20.0),
-                      CampoRegistro(
+                      CampoEntrada(
                         nomeCampo: 'Confirme a Senha',
                         icone: const Icon(Icons.lock),
                         tamanhoMinimo: 8,

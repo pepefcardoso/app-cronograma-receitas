@@ -3,6 +3,7 @@ import 'package:app_cronograma_receitas/blocs/perfil/perfil_cubit.dart';
 import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
 import 'package:app_cronograma_receitas/constantes/temas.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_home.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_inicial.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_login.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_perfil.dart';
@@ -73,10 +74,11 @@ class MyApp extends StatelessWidget {
           theme: temaClaro,
           home: const PaginaSplash(),
           routes: {
-            PaginaInicial.nomeRota: (context) => const PaginaInicial(),
+            PaginaHome.nomeRota: (context) => const PaginaHome(),
             PaginaPerfil.nomeRota: (context) => const PaginaPerfil(),
             PaginaLogin.nomeRota: (context) => const PaginaLogin(),
             PaginaRegistro.nomeRota: (context) => const PaginaRegistro(),
+            PaginaInicial.nomeRota: (context) => const PaginaInicial(),
           },
         ),
       ),
