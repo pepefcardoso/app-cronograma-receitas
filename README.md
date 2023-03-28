@@ -1,16 +1,7 @@
-# app_cronograma_receitas
+Aplicativo Receitaria
 
-A new Flutter project.
+Este aplicativo é um projeto pessoal com o objetivo de facilitar a vida de quem prepara suas próprias marmitas para a semana.
 
-## Getting Started
+O app conta com Login/Signup utilizando Firebase e atualização de perfil do usuário.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A ideia principal é realizar o cadastro de receitas e organizar o histórico de cronogramas de marmitas.
