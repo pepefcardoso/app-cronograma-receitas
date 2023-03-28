@@ -14,10 +14,8 @@ class SignupCubit extends Cubit<SignupState> {
   ) : super(SignupState.inicial());
 
   Future<void> signup({
-    required String nome,
     required String email,
     required String senha,
-    required DateTime dataNascimento,
   }) async {
     emit(
       state.copyWith(statusSignUp: StatusSignUp.submetendo),
@@ -25,10 +23,8 @@ class SignupCubit extends Cubit<SignupState> {
 
     try {
       await repositorioAutenticacao.signup(
-        nome: nome,
         email: email,
         senha: senha,
-        dataNascimento: dataNascimento,
       );
 
       emit(

@@ -26,6 +26,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "carousel_slider",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/carousel_slider-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/characters-1.2.1",
       "packageUri": "lib/",
@@ -182,6 +188,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "go_router",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/go_router-6.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "http_parser",
       "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.2",
       "packageUri": "lib/",
@@ -204,6 +216,12 @@
       "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/lints-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "logging",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/logging-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "mask_text_input_formatter",
@@ -320,7 +338,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-03-22T21:02:10.148384Z",
+  "generated": "2023-03-28T21:13:26.645009Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }

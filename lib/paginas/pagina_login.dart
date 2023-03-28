@@ -2,6 +2,7 @@ import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_texto_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_entrada.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/marca_do_app.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_registro.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
@@ -51,32 +52,13 @@ class _PaginaLoginState extends State<PaginaLogin> {
             child: Center(
               child: Column(
                 children: [
-                  //Logo e nome do app
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 25.0,
-                      vertical: 10.0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          "assets/images/panela_1.png",
-                          height: 60,
-                          width: 60,
-                        ),
-                        const SizedBox(width: 20.0),
-                        const Text(
-                          "Receitaria",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 35.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  //Marca do app
+                  const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 10.0,
+                      ),
+                      child: MarcaDoApp()),
 
                   const SizedBox(height: 44.0),
 
@@ -208,7 +190,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        Navigator.popAndPushNamed(
+                                        Navigator.pushNamed(
                                             context, PaginaRegistro.nomeRota);
                                       }),
                                 ],

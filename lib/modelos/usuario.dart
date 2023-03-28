@@ -3,15 +3,17 @@ import 'package:equatable/equatable.dart';
 
 class Usuario extends Equatable {
   final String id;
-  final String nome;
+  final String? nome;
   final String email;
-  final DateTime dataNascimento;
+  final DateTime? dataNascimento;
+  final String? fotoPerfil;
 
   const Usuario({
     required this.id,
-    required this.nome,
+    this.nome,
     required this.email,
-    required this.dataNascimento,
+    this.dataNascimento,
+    this.fotoPerfil,
   });
 
   factory Usuario.fromDoc(DocumentSnapshot docUsuario) {
@@ -22,25 +24,28 @@ class Usuario extends Equatable {
       nome: dadosUsuario!['name'],
       email: dadosUsuario['email'],
       dataNascimento: dadosUsuario['dataNascimento'].toDate(),
+      fotoPerfil: dadosUsuario['fotoPerfil'],
     );
   }
 
   factory Usuario.initialUser() {
-    return Usuario(
+    return const Usuario(
       id: '',
       nome: '',
       email: '',
-      dataNascimento: DateTime(2000),
+      dataNascimento: null,
+      fotoPerfil: '',
     );
   }
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       id,
       nome,
       email,
       dataNascimento,
+      fotoPerfil,
     ];
   }
 

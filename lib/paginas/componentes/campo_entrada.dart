@@ -27,29 +27,26 @@ class CampoEntrada extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: TextFormField(
-        controller: controller,
-        obscureText: ehSenha,
-        keyboardType: modoTeclado,
-        autocorrect: false,
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade400),
-          ),
-          filled: true,
-          fillColor: Colors.grey.shade200,
-          hintText: nomeCampo,
-          prefixIcon: icone,
+    return TextFormField(
+      controller: controller,
+      obscureText: ehSenha,
+      keyboardType: modoTeclado,
+      autocorrect: false,
+      decoration: InputDecoration(
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
-        validator: validateField,
-        onSaved: onSaved,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade400),
+        ),
+        filled: true,
+        fillColor: Colors.grey.shade200,
+        hintText: nomeCampo,
+        prefixIcon: icone,
       ),
+      validator: validateField,
+      onSaved: onSaved,
     );
   }
 

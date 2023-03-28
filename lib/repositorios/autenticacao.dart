@@ -14,10 +14,8 @@ class RepositorioAutenticacao {
   Stream<fb_auth.User?> get user => firebaseAuth.userChanges();
 
   Future<void> signup({
-    required String nome,
     required String email,
     required String senha,
-    required DateTime dataNascimento,
   }) async {
     try {
       final fb_auth.UserCredential credencialUsuario =
@@ -29,9 +27,7 @@ class RepositorioAutenticacao {
       final signedInUser = credencialUsuario.user!;
 
       await referenciaUsuarios.doc(signedInUser.uid).set({
-        'name': nome,
         'email': email,
-        'dataNascimento': dataNascimento,
       });
     } on fb_auth.FirebaseAuthException catch (e) {
       throw ErroPersonalizado(

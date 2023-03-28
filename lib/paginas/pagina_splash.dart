@@ -1,6 +1,6 @@
 import 'package:app_cronograma_receitas/blocs/autentica%C3%A7%C3%A3o/autenticacao_bloc.dart';
-import 'package:app_cronograma_receitas/paginas/pagina_home.dart';
-import 'package:app_cronograma_receitas/paginas/pagina_inicial.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_menu_inicial.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +16,7 @@ class PaginaSplash extends StatelessWidget {
         if (state.statusAutenticacao == StatusAutenticacao.desautenticado) {
           Navigator.pushNamedAndRemoveUntil(
             context,
-            PaginaInicial.nomeRota,
+            PaginaLogin.nomeRota,
             (route) {
               return route.settings.name ==
                       ModalRoute.of(context)!.settings.name
@@ -25,7 +25,7 @@ class PaginaSplash extends StatelessWidget {
             },
           );
         } else if (state.statusAutenticacao == StatusAutenticacao.autenticado) {
-          Navigator.pushNamed(context, PaginaHome.nomeRota);
+          Navigator.pushNamed(context, PaginaMenuInicial.nomeRota);
         }
       },
       builder: (context, state) {

@@ -1,10 +1,10 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/campo_data_registro.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/campo_entrada.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/botao_texto_personalizado.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/formulario_registro.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/marca_do_app.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 class PaginaRegistro extends StatefulWidget {
   static const String nomeRota = '/registro';
@@ -16,31 +16,6 @@ class PaginaRegistro extends StatefulWidget {
 }
 
 class _PaginaRegistroState extends State<PaginaRegistro> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
-  final _senhaController = TextEditingController();
-  late String? _nome, _email, _senha;
-  late DateTime? _dataNascimento;
-
-  void _submit() {
-    setState(() {
-      _autovalidateMode = AutovalidateMode.always;
-    });
-
-    final form = _formKey.currentState;
-
-    if (form == null || !form.validate()) return;
-
-    form.save();
-
-    context.read<SignupCubit>().signup(
-          nome: _nome!,
-          email: _email!,
-          senha: _senha!,
-          dataNascimento: _dataNascimento!,
-        );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -53,100 +28,92 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
         },
         builder: (context, state) {
           return Scaffold(
-            body: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: Form(
-                  key: _formKey,
-                  autovalidateMode: _autovalidateMode,
-                  child: ListView(
-                    reverse: true,
-                    shrinkWrap: true,
-                    children: [
-                      CampoDataRegistro(
-                        nomeCampo: 'Data de Nascimento',
-                        icone: const Icon(Icons.calendar_month),
-                        onSaved: (String? value) {
-                          _dataNascimento =
-                              DateFormat('dd/MM/yyyy').parse(value!.trim());
-                        },
-                      ),
-                      const SizedBox(height: 20.0),
-                      CampoEntrada(
-                        nomeCampo: 'Nome',
-                        icone: const Icon(Icons.account_box),
-                        onSaved: (String? value) {
-                          _nome = value!.trim();
-                        },
-                        tamanhoMinimo: 2,
-                      ),
-                      const SizedBox(height: 20.0),
-                      CampoEntrada(
-                        nomeCampo: 'Email',
-                        icone: const Icon(Icons.email),
-                        onSaved: (String? value) {
-                          _email = value!.trim();
-                        },
-                        tamanhoMinimo: 10,
-                        ehEmail: true,
-                        modoTeclado: TextInputType.emailAddress,
-                      ),
-                      const SizedBox(height: 20.0),
-                      CampoEntrada(
-                        controller: _senhaController,
-                        nomeCampo: 'Senha',
-                        icone: const Icon(Icons.lock),
-                        onSaved: (String? value) {
-                          _senha = value;
-                        },
-                        tamanhoMinimo: 8,
-                        ehSenha: true,
-                      ),
-                      const SizedBox(height: 20.0),
-                      CampoEntrada(
-                        nomeCampo: 'Confirme a Senha',
-                        icone: const Icon(Icons.lock),
-                        tamanhoMinimo: 8,
-                        ehSenha: true,
-                        confirmacaoSenha: _senhaController.text,
-                      ),
-                      const SizedBox(height: 20.0),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+            resizeToAvoidBottomInset: false,
+            backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
+            body: SafeArea(
+              child: Center(
+                child: Column(
+                  children: [
+                    //Marca do app
+                    const Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 25.0,
                         ),
-                        onPressed: state.statusSignUp == StatusSignUp.submetendo
-                            ? null
-                            : _submit,
-                        child: Text(
-                            state.statusSignUp == StatusSignUp.submetendo
-                                ? 'Carregando...'
-                                : 'Cadastre-se'),
+                        child: MarcaDoApp(),
                       ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          textStyle: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
+                    ),
+
+                    const Expanded(
+                      flex: 2,
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 25.0),
+                          child: Text(
+                            "Cadastre-se",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
                         ),
-                        onPressed: state.statusSignUp == StatusSignUp.submetendo
-                            ? null
-                            : () {
-                                Navigator.pop(context);
-                              },
-                        child: const Text('Já é cadastrado? Entre Aqui!'),
                       ),
-                    ].reversed.toList(),
-                  ),
+                    ),
+
+                    //Formulário de Registro
+                    const Expanded(
+                      flex: 6,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 25.0,
+                          ),
+                          child: FormularioRegistroUsuario(),
+                        ),
+                      ),
+                    ),
+
+                    //Botão para a página de login
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Já é membro?",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                            const SizedBox(width: 5.0),
+                            BotaoTextoPersonalizado(
+                              texto: const Text(
+                                "Entre aqui",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              onPressed:
+                                  state.statusSignUp == StatusSignUp.submetendo
+                                      ? () {}
+                                      : () {
+                                          Navigator.pop(context);
+                                        },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

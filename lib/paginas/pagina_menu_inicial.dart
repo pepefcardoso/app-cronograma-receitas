@@ -3,16 +3,16 @@ import 'package:app_cronograma_receitas/paginas/pagina_perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PaginaHome extends StatefulWidget {
-  static const String nomeRota = '/home';
+class PaginaMenuInicial extends StatefulWidget {
+  static const String nomeRota = '/menu_inicial';
 
-  const PaginaHome({super.key});
+  const PaginaMenuInicial({super.key});
 
   @override
-  State<PaginaHome> createState() => _PaginaHome();
+  State<PaginaMenuInicial> createState() => _PaginaMenuInicial();
 }
 
-class _PaginaHome extends State<PaginaHome> {
+class _PaginaMenuInicial extends State<PaginaMenuInicial> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
