@@ -71,4 +71,24 @@ class RepositorioAutenticacao {
   Future<void> signout() async {
     await firebaseAuth.signOut();
   }
+
+  Future<void> resetarSenha({required String email}) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(
+        email: email,
+      );
+    } on fb_auth.FirebaseAuthException catch (e) {
+      throw ErroPersonalizado(
+        codigo: e.code,
+        mensagem: e.message!,
+        plugin: e.plugin,
+      );
+    } catch (e) {
+      throw ErroPersonalizado(
+        codigo: 'Exception',
+        mensagem: e.toString(),
+        plugin: 'flutter_error/server_error',
+      );
+    }
+  }
 }

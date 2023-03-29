@@ -41,4 +41,31 @@ class SigninCubit extends Cubit<SigninState> {
       );
     }
   }
+
+  Future<void> resetarSenha({
+    required String email,
+  }) async {
+    emit(
+      state.copyWith(statusSignIn: StatusSignIn.submetendo),
+    );
+
+    try {
+      await repositorioAutenticacao.resetarSenha(
+        email: email,
+      );
+
+      emit(
+        state.copyWith(
+          statusSignIn: StatusSignIn.sucesso,
+        ),
+      );
+    } on ErroPersonalizado catch (e) {
+      emit(
+        state.copyWith(
+          statusSignIn: StatusSignIn.erro,
+          erro: e,
+        ),
+      );
+    }
+  }
 }

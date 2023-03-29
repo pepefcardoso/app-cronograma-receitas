@@ -67,6 +67,8 @@ class CampoEntrada extends StatelessWidget {
       return null;
     } else {
       if (confirmacaoSenha != value) {
+        debugPrint(confirmacaoSenha);
+        debugPrint(value);
         return 'As senhas não conferem';
       }
 

@@ -1,17 +1,19 @@
-import 'package:app_cronograma_receitas/blocs/autentica%C3%A7%C3%A3o/autenticacao_bloc.dart';
-import 'package:app_cronograma_receitas/blocs/perfil/perfil_cubit.dart';
-import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
-import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
-import 'package:app_cronograma_receitas/constantes/temas.dart';
-import 'package:app_cronograma_receitas/paginas/paginas.dart';
-import 'package:app_cronograma_receitas/repositorios/autenticacao.dart';
-import 'package:app_cronograma_receitas/repositorios/perfil.dart';
+import 'package:app_cronograma_receitas/paginas/pagina_esqueceu_senha.dart';
+
+import 'blocs/autenticacao/autenticacao_bloc.dart';
+import 'blocs/perfil/perfil_cubit.dart';
+import 'blocs/sign_in/signin_cubit.dart';
+import 'blocs/sign_up/signup_cubit.dart';
+import 'constantes/constantes.dart';
+import 'paginas/paginas.dart';
+import 'repositorios/repositorios.dart';
+import 'firebase_options.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,6 +75,8 @@ class MyApp extends StatelessWidget {
             PaginaPerfil.nomeRota: (context) => const PaginaPerfil(),
             PaginaLogin.nomeRota: (context) => const PaginaLogin(),
             PaginaRegistro.nomeRota: (context) => const PaginaRegistro(),
+            PaginaEsqueceuSenha.nomeRota: (context) =>
+                const PaginaEsqueceuSenha(),
           },
         ),
       ),

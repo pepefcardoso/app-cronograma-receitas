@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MarcaDoApp extends StatelessWidget {
-  const MarcaDoApp({supereStatelessWidgetey});
+  const MarcaDoApp({super.key});
 
   @override
   Widget build(BuildContext context) {

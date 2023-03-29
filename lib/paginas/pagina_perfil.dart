@@ -1,4 +1,4 @@
-import 'package:app_cronograma_receitas/blocs/autentica%C3%A7%C3%A3o/autenticacao_bloc.dart';
+import 'package:app_cronograma_receitas/blocs/autenticacao/autenticacao_bloc.dart';
 import 'package:app_cronograma_receitas/blocs/perfil/perfil_cubit.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';

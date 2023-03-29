@@ -81,12 +81,28 @@ class FormularioRegistroUsuarioState extends State<FormularioRegistroUsuario> {
               const SizedBox(height: 20.0),
 
               //Campo de confirmação de senha
-              CampoEntrada(
-                nomeCampo: 'Confirme a Senha',
-                icone: const Icon(Icons.lock),
-                tamanhoMinimo: 8,
-                ehSenha: true,
-                confirmacaoSenha: _senhaController.text,
+              TextFormField(
+                obscureText: true,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  hintText: "Confirme a Senha",
+                  prefixIcon: const Icon(Icons.lock),
+                ),
+                validator: (String? value) {
+                  if (_senhaController.text != value) {
+                    return 'As senhas não conferem';
+                  }
+                  return null;
+                },
               ),
 
               const SizedBox(height: 20.0),

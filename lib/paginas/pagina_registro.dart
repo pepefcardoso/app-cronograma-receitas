@@ -1,7 +1,8 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/botao_texto_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/formulario_registro.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/marca_do_app.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/rodape_login_signup.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/slider_imagens.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,88 +33,64 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
             backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
             body: SafeArea(
               child: Center(
-                child: Column(
-                  children: [
-                    //Marca do app
-                    const Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 25.0,
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25.0,
+                  ),
+                  child: Column(
+                    children: [
+                      //Marca do app
+                      const Expanded(
+                        flex: 1,
                         child: MarcaDoApp(),
                       ),
-                    ),
 
-                    const Expanded(
-                      flex: 2,
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 25.0),
-                          child: Text(
-                            "Cadastre-se",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                      const Expanded(
+                        flex: 4,
+                        child: SliderDeImagens(),
                       ),
-                    ),
 
-                    //Formulário de Registro
-                    const Expanded(
-                      flex: 6,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 25.0,
-                          ),
-                          child: FormularioRegistroUsuario(),
-                        ),
-                      ),
-                    ),
-
-                    //Botão para a página de login
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Já é membro?",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                              ),
-                            ),
-                            const SizedBox(width: 5.0),
-                            BotaoTextoPersonalizado(
-                              texto: const Text(
-                                "Entre aqui",
+                      Expanded(
+                        flex: 5,
+                        child: Column(
+                          children: const [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Cadastre-se",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20.0,
+                                  fontSize: 35.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              onPressed:
-                                  state.statusSignUp == StatusSignUp.submetendo
-                                      ? () {}
-                                      : () {
-                                          Navigator.pop(context);
-                                        },
                             ),
+
+                            SizedBox(height: 25.0),
+
+                            //Formulário de Registro
+                            FormularioRegistroUsuario(),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+
+                      //Botão para a página de login
+                      Expanded(
+                        flex: 1,
+                        child: RodapeLoginSignup(
+                          textoMensagem: "Já é membro?",
+                          textoBotao: "Entre aqui",
+                          onPressed:
+                              state.statusSignUp == StatusSignUp.submetendo
+                                  ? () {}
+                                  : () {
+                                      Navigator.pop(context);
+                                    },
+                          corTexto: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
