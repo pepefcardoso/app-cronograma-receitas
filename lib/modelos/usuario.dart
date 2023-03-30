@@ -7,6 +7,7 @@ class Usuario extends Equatable {
   final String email;
   final DateTime? dataNascimento;
   final String? fotoPerfil;
+  final String? telefone;
 
   const Usuario({
     required this.id,
@@ -14,6 +15,7 @@ class Usuario extends Equatable {
     required this.email,
     this.dataNascimento,
     this.fotoPerfil,
+    this.telefone,
   });
 
   factory Usuario.fromDoc(DocumentSnapshot docUsuario) {
@@ -21,20 +23,22 @@ class Usuario extends Equatable {
 
     return Usuario(
       id: docUsuario.id,
-      nome: dadosUsuario!['name'],
+      nome: dadosUsuario!['nome'],
       email: dadosUsuario['email'],
-      dataNascimento: dadosUsuario['dataNascimento'].toDate(),
-      fotoPerfil: dadosUsuario['fotoPerfil'],
+      dataNascimento: dadosUsuario['data_nascimento'].toDate(),
+      fotoPerfil: dadosUsuario['foto_perfil'],
+      telefone: dadosUsuario['telefone'],
     );
   }
 
   factory Usuario.initialUser() {
     return const Usuario(
       id: '',
-      nome: '',
+      nome: null,
       email: '',
       dataNascimento: null,
-      fotoPerfil: '',
+      fotoPerfil: null,
+      telefone: null,
     );
   }
 
@@ -46,6 +50,7 @@ class Usuario extends Equatable {
       email,
       dataNascimento,
       fotoPerfil,
+      telefone,
     ];
   }
 

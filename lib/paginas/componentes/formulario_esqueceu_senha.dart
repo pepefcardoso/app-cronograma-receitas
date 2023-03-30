@@ -1,6 +1,6 @@
 import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/campo_entrada.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:app_cronograma_receitas/utils/snackbar.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +59,8 @@ class FormularioEsqueceusenhaState extends State<FormularioEsqueceusenha> {
             shrinkWrap: true,
             children: [
               //Campo de email
-              CampoEntrada(
+
+              CampoTexto(
                 nomeCampo: 'Email',
                 icone: const Icon(Icons.email),
                 onSaved: (String? value) {

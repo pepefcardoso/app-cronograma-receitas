@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 
-class CampoEntrada extends StatelessWidget {
-  const CampoEntrada({
+class CampoTexto extends StatelessWidget {
+  const CampoTexto({
     required this.nomeCampo,
     required this.icone,
     this.onSaved,

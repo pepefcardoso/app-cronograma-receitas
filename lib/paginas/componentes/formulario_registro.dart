@@ -1,6 +1,6 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/campo_entrada.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +53,7 @@ class FormularioRegistroUsuarioState extends State<FormularioRegistroUsuario> {
             shrinkWrap: true,
             children: [
               //Campo de email
-              CampoEntrada(
+              CampoTexto(
                 nomeCampo: 'Email',
                 icone: const Icon(Icons.email),
                 onSaved: (String? value) {
@@ -67,7 +67,7 @@ class FormularioRegistroUsuarioState extends State<FormularioRegistroUsuario> {
               const SizedBox(height: 20.0),
 
               //Campo de senha
-              CampoEntrada(
+              CampoTexto(
                 controller: _senhaController,
                 nomeCampo: 'Senha',
                 icone: const Icon(Icons.lock),

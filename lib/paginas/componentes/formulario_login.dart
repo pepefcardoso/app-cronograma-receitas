@@ -1,7 +1,7 @@
 import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_texto_personalizado.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/campo_entrada.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_esqueceu_senha.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +53,7 @@ class _FormularioLoginState extends State<FormularioLogin> {
             shrinkWrap: true,
             children: [
               //Input do Email
-              CampoEntrada(
+              CampoTexto(
                 nomeCampo: 'Email',
                 icone: const Icon(Icons.email),
                 onSaved: (String? value) {
@@ -67,7 +67,7 @@ class _FormularioLoginState extends State<FormularioLogin> {
               const SizedBox(height: 15.0),
 
               //Input da senha
-              CampoEntrada(
+              CampoTexto(
                 nomeCampo: 'Senha',
                 icone: const Icon(Icons.lock),
                 onSaved: (String? value) {

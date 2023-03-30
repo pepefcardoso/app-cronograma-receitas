@@ -17,13 +17,44 @@ class PerfilCubit extends Cubit<PerfilState> {
   Future<void> buscaPerfil({required String uid}) async {
     emit(
       state.copyWith(
-        statusPerfil: StatusPerfil.carregado,
+        statusPerfil: StatusPerfil.carregando,
       ),
     );
 
     try {
       final Usuario usuario = await repositorioPerfil.buscaPerfil(
         uid: uid,
+      );
+      emit(
+        state.copyWith(
+          statusPerfil: StatusPerfil.carregado,
+          usuario: usuario,
+        ),
+      );
+    } on ErroPersonalizado catch (e) {
+      emit(
+        state.copyWith(
+          statusPerfil: StatusPerfil.erro,
+          erro: e,
+        ),
+      );
+    }
+  }
+
+  Future<void> atualizaPerfil({
+    required String uid,
+    required Map<String, dynamic> info,
+  }) async {
+    emit(
+      state.copyWith(
+        statusPerfil: StatusPerfil.carregando,
+      ),
+    );
+
+    try {
+      final Usuario usuario = await repositorioPerfil.atualizaPerfil(
+        uid: uid,
+        info: info,
       );
       emit(
         state.copyWith(
