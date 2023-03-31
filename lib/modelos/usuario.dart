@@ -5,7 +5,7 @@ class Usuario extends Equatable {
   final String id;
   final String? nome;
   final String email;
-  final DateTime? dataNascimento;
+  final String? dataNascimento; //TODO DATETIME
   final String? fotoPerfil;
   final String? telefone;
 
@@ -25,7 +25,7 @@ class Usuario extends Equatable {
       id: docUsuario.id,
       nome: dadosUsuario!['nome'],
       email: dadosUsuario['email'],
-      dataNascimento: dadosUsuario['data_nascimento'].toDate(),
+      dataNascimento: dadosUsuario['data_nascimento'],
       fotoPerfil: dadosUsuario['foto_perfil'],
       telefone: dadosUsuario['telefone'],
     );

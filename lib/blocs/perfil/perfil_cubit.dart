@@ -47,7 +47,7 @@ class PerfilCubit extends Cubit<PerfilState> {
   }) async {
     emit(
       state.copyWith(
-        statusPerfil: StatusPerfil.carregando,
+        statusPerfil: StatusPerfil.atualizando,
       ),
     );
 
@@ -58,7 +58,7 @@ class PerfilCubit extends Cubit<PerfilState> {
       );
       emit(
         state.copyWith(
-          statusPerfil: StatusPerfil.carregado,
+          statusPerfil: StatusPerfil.atualizado,
           usuario: usuario,
         ),
       );

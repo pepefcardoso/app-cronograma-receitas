@@ -12,6 +12,7 @@ class CampoTexto extends StatelessWidget {
     this.ehEmail = false,
     this.ehSenha = false,
     this.controller,
+    this.valorInicial,
     super.key,
   });
 
@@ -24,11 +25,13 @@ class CampoTexto extends StatelessWidget {
   final String? confirmacaoSenha;
   final int tamanhoMinimo;
   final TextEditingController? controller;
+  final dynamic valorInicial;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      initialValue: valorInicial,
       obscureText: ehSenha,
       keyboardType: modoTeclado,
       autocorrect: false,

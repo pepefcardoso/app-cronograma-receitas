@@ -17,8 +17,8 @@ class PaginaPerfil extends StatefulWidget {
 class _PaginaPerfil extends State<PaginaPerfil> {
   @override
   void initState() {
-    _buscaPerfil();
     super.initState();
+    _buscaPerfil();
   }
 
   void _buscaPerfil() {
@@ -38,14 +38,44 @@ class _PaginaPerfil extends State<PaginaPerfil> {
           listener: (context, state) {
             if (state.statusPerfil == StatusPerfil.erro) {
               dialogoErro(context, state.erro);
-              Navigator.pop(context);
+            } else if (state.statusPerfil == StatusPerfil.atualizado) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    "Usuário atualizado com sucesso!",
+                  ),
+                ),
+              );
             }
           },
           builder: (context, state) {
-            if (state.statusPerfil == StatusPerfil.carregando) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state.statusPerfil == StatusPerfil.inicial) {
+            if (state.statusPerfil == StatusPerfil.inicial) {
               return Container();
+            } else if (state.statusPerfil == StatusPerfil.carregando) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state.statusPerfil == StatusPerfil.erro) {
+              return Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.error,
+                      color: Colors.white,
+                      size: 100.0,
+                    ),
+                    SizedBox(width: 20),
+                    Text(
+                      'Aconteceu um erro!\nTente novamente por favor!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }
             return SafeArea(
               child: Center(
@@ -55,46 +85,39 @@ class _PaginaPerfil extends State<PaginaPerfil> {
                   ),
                   child: Column(
                     children: [
-                      Expanded(
-                        flex: 2,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.keyboard_return),
-                            color: Colors.white,
-                            iconSize: 35.0,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 7,
-                        child: Column(
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Row(
                           children: [
-                            const Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Perfil",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 35.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.keyboard_return),
+                              color: Colors.white,
+                              iconSize: 35.0,
                             ),
-                            const SizedBox(height: 25.0),
-                            FormularioPerfil(
-                              usuarioPadrao: state.usuario,
+                            const SizedBox(width: 15.0),
+                            const Text(
+                              "Perfil",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 35.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      const Expanded(
-                        flex: 1,
-                        child: SizedBox(),
-                      )
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: FormularioPerfil(
+                            usuarioPadrao: state.usuario,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
                     ],
                   ),
                 ),

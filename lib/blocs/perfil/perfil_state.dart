@@ -4,6 +4,8 @@ enum StatusPerfil {
   inicial,
   carregando,
   carregado,
+  atualizando,
+  atualizado,
   erro,
 }
 
