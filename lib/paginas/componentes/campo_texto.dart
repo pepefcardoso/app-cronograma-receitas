@@ -8,11 +8,12 @@ class CampoTexto extends StatelessWidget {
     this.onSaved,
     this.confirmacaoSenha,
     this.modoTeclado,
-    required this.tamanhoMinimo,
+    this.tamanhoMinimo = 5,
     this.ehEmail = false,
     this.ehSenha = false,
     this.controller,
     this.valorInicial,
+    this.habilitado = true,
     super.key,
   });
 
@@ -26,10 +27,12 @@ class CampoTexto extends StatelessWidget {
   final int tamanhoMinimo;
   final TextEditingController? controller;
   final dynamic valorInicial;
+  final bool habilitado;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: habilitado,
       controller: controller,
       initialValue: valorInicial,
       obscureText: ehSenha,

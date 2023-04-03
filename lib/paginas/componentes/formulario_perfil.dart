@@ -21,7 +21,20 @@ class FormularioPerfil extends StatefulWidget {
 class FormularioPerfilState extends State<FormularioPerfil> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
-  late String? _fotoPerfil, _nome, _dataNascimento, _email, _telefone;
+  late String? _nome, _dataNascimento, _telefone;
+  late final TextEditingController _fotoPerfilController;
+
+  @override
+  void initState() {
+    _fotoPerfilController = TextEditingController(
+        text: context.read<PerfilCubit>().state.usuario.fotoPerfil);
+  }
+
+  @override
+  void dispose() {
+    _fotoPerfilController.dispose();
+    super.dispose();
+  }
 
   void _submit() {
     setState(() {
@@ -39,10 +52,10 @@ class FormularioPerfilState extends State<FormularioPerfil> {
     context.read<PerfilCubit>().atualizaPerfil(
       uid: uid,
       info: {
-        "foto_perfil": _fotoPerfil,
+        // "foto_perfil": _fotoPerfil,
         "nome": _nome,
         "data_nascimento": _dataNascimento,
-        "email": _email,
+        "foto_perfil": _fotoPerfilController.text,
         "telefone": _telefone,
       },
     );
@@ -60,11 +73,13 @@ class FormularioPerfilState extends State<FormularioPerfil> {
             shrinkWrap: true,
             children: [
               //Campo de email
-              const SelecionaImagem(),
+              SelecionaImagem(
+                  id: state.usuario.id,
+                  urlFotoPerfilController: _fotoPerfilController),
 
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 40.0),
 
-              //Campo de email
+              /*//Campo de email
               CampoTexto(
                 nomeCampo: 'Foto de Perfil',
                 valorInicial: state.usuario.fotoPerfil,
@@ -75,7 +90,7 @@ class FormularioPerfilState extends State<FormularioPerfil> {
                 tamanhoMinimo: 5,
               ),
 
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),*/
 
               //Campo de email
               CampoTexto(
@@ -105,16 +120,15 @@ class FormularioPerfilState extends State<FormularioPerfil> {
               const SizedBox(height: 20.0),
 
               //Campo de email
-              CampoTexto(
-                nomeCampo: 'Email',
-                valorInicial: state.usuario.email,
-                icone: const Icon(Icons.email),
-                onSaved: (String? value) {
-                  _email = value!.trim();
-                },
-                tamanhoMinimo: 10,
-                ehEmail: true,
-                modoTeclado: TextInputType.emailAddress,
+              Tooltip(
+                message: "Não é possível alterar o email",
+                triggerMode: TooltipTriggerMode.tap,
+                child: CampoTexto(
+                  nomeCampo: 'Email',
+                  habilitado: false,
+                  valorInicial: state.usuario.email,
+                  icone: const Icon(Icons.email),
+                ),
               ),
 
               const SizedBox(height: 20.0),

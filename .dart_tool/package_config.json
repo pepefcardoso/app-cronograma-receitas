@@ -219,7 +219,7 @@
     },
     {
       "name": "go_router",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/go_router-6.5.2",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/go_router-6.5.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -404,7 +404,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-03-31T20:59:31.248104Z",
+  "generated": "2023-04-03T21:12:10.203952Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }
