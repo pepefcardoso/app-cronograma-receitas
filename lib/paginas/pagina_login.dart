@@ -1,8 +1,6 @@
 import 'package:app_cronograma_receitas/paginas/componentes/formulario_login.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/marca_do_app.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/rodape_login_signup.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/slider_imagens.dart';
-import 'package:app_cronograma_receitas/paginas/pagina_registro.dart';
 import 'package:flutter/material.dart';
 
 class PaginaLogin extends StatefulWidget {
@@ -21,65 +19,39 @@ class _PaginaLoginState extends State<PaginaLogin> {
       onWillPop: () async => false,
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
-          body: SafeArea(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25.0,
+        child: SafeArea(
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
+            body: Column(
+              children: const [
+                //Cabeçalho com a marca
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15.0,
+                      horizontal: 25.0,
+                    ),
+                    child: MarcaDoApp(),
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    //Cabeçalho com a marca
-                    const Expanded(
-                      flex: 1,
-                      child: MarcaDoApp(),
-                    ),
 
-                    //Slider com imagens de marmitas
-                    const Expanded(
-                      flex: 4,
-                      child: SliderDeImagens(),
-                    ),
-
-                    Expanded(
-                      flex: 4,
-                      child: Column(
-                        children: const [
-                          //Texto de boas vindas
-                          Text(
-                            "Seja bem vindo novamente :)",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
-                          ),
-
-                          SizedBox(height: 20.0),
-
-                          //Formulário de login
-                          FormularioLogin(),
-                        ],
-                      ),
-                    ),
-
-                    //Rodapé com botão de cadastro
-                    Expanded(
-                      flex: 1,
-                      child: RodapeLoginSignup(
-                        textoMensagem: "Ainda não é membro?",
-                        textoBotao: "Cadastre-se aqui",
-                        onPressed: () {
-                          Navigator.pushNamed(context, PaginaRegistro.nomeRota);
-                        },
-                        corTexto: Colors.white,
-                      ),
-                    ),
-                  ],
+                //Slider com imagens de marmitas
+                Expanded(
+                  child: SliderDeImagens(),
                 ),
-              ),
+
+                //Formulário de login
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 25.0,
+                    ),
+                    child: FormularioLogin(),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

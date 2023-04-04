@@ -2,7 +2,9 @@ import 'package:app_cronograma_receitas/blocs/sign_in/signin_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_texto_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/rodape_login_signup.dart';
 import 'package:app_cronograma_receitas/paginas/pagina_esqueceu_senha.dart';
+import 'package:app_cronograma_receitas/paginas/paginas.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,69 +48,94 @@ class _FormularioLoginState extends State<FormularioLogin> {
       },
       builder: (context, state) {
         //Formulário de login
-        return Form(
-          key: _formKey,
-          autovalidateMode: _autovalidateMode,
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              //Input do Email
-              CampoTexto(
-                nomeCampo: 'Email',
-                icone: const Icon(Icons.email),
-                onSaved: (String? value) {
-                  _email = value!.trim();
-                },
-                tamanhoMinimo: 10,
-                ehEmail: true,
-                modoTeclado: TextInputType.emailAddress,
-              ),
+        return SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            autovalidateMode: _autovalidateMode,
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Seja bem vindo novamente :)",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
 
-              const SizedBox(height: 15.0),
+                const SizedBox(height: 20.0),
+                //Input do Email
+                CampoTexto(
+                  nomeCampo: 'Email',
+                  icone: const Icon(Icons.email),
+                  onSaved: (String? value) {
+                    _email = value!.trim();
+                  },
+                  tamanhoMinimo: 10,
+                  ehEmail: true,
+                  modoTeclado: TextInputType.emailAddress,
+                ),
 
-              //Input da senha
-              CampoTexto(
-                nomeCampo: 'Senha',
-                icone: const Icon(Icons.lock),
-                onSaved: (String? value) {
-                  _senha = value;
-                },
-                tamanhoMinimo: 8,
-                ehSenha: true,
-              ),
+                const SizedBox(height: 15.0),
 
-              //Botao Esqueceu a senha
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  BotaoTextoPersonalizado(
-                      texto: const Text(
-                        "Esqueceu a senha?",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
+                //Input da senha
+                CampoTexto(
+                  nomeCampo: 'Senha',
+                  icone: const Icon(Icons.lock),
+                  onSaved: (String? value) {
+                    _senha = value;
+                  },
+                  tamanhoMinimo: 8,
+                  ehSenha: true,
+                ),
+
+                //Botao Esqueceu a senha
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    BotaoTextoPersonalizado(
+                        texto: const Text(
+                          "Esqueceu a senha?",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          ),
                         ),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, PaginaEsqueceuSenha.nomeRota);
-                      }),
-                ],
-              ),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, PaginaEsqueceuSenha.nomeRota);
+                        }),
+                  ],
+                ),
 
-              const SizedBox(height: 12.0),
+                const SizedBox(height: 10.0),
 
-//Botão Login
-              BotaoPersonalizado(
-                onPressed: _submit,
-                corPrincipal: Colors.white,
-                texto: state.statusSignIn == StatusSignIn.submetendo
-                    ? 'Carregando...'
-                    : 'Entrar',
-                corBorda: Colors.white,
-                cortexto: Colors.black,
-              ),
-            ],
+                //Botão Login
+                BotaoPersonalizado(
+                  onPressed: _submit,
+                  corPrincipal: Colors.white,
+                  texto: state.statusSignIn == StatusSignIn.submetendo
+                      ? 'Carregando...'
+                      : 'Entrar',
+                  corBorda: Colors.white,
+                  cortexto: Colors.black,
+                ),
+
+                const SizedBox(height: 20.0),
+
+                RodapeLoginSignup(
+                  textoMensagem: "Ainda não é membro?",
+                  textoBotao: "Cadastre-se aqui",
+                  onPressed: () {
+                    Navigator.pushNamed(context, PaginaRegistro.nomeRota);
+                  },
+                  corTexto: Colors.white,
+                ),
+              ],
+            ),
           ),
         );
       },

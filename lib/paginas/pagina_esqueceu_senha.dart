@@ -18,7 +18,7 @@ class _PaginaEsqueceuSenhaState extends State<PaginaEsqueceuSenha> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
         body: SafeArea(
           child: Center(

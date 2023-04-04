@@ -29,7 +29,7 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
         },
         builder: (context, state) {
           return Scaffold(
-            resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: true,
             backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
             body: SafeArea(
               child: Center(

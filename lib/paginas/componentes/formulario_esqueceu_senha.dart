@@ -51,39 +51,41 @@ class FormularioEsqueceusenhaState extends State<FormularioEsqueceusenha> {
       },
       builder: (context, state) {
         //Formulário de login
-        return Form(
-          key: _formKey,
-          autovalidateMode: _autovalidateMode,
-          child: ListView(
-            reverse: true,
-            shrinkWrap: true,
-            children: [
-              //Campo de email
+        return SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            autovalidateMode: _autovalidateMode,
+            child: ListView(
+              reverse: true,
+              shrinkWrap: true,
+              children: [
+                //Campo de email
 
-              CampoTexto(
-                nomeCampo: 'Email',
-                icone: const Icon(Icons.email),
-                onSaved: (String? value) {
-                  _email = value!.trim();
-                },
-                tamanhoMinimo: 10,
-                ehEmail: true,
-                modoTeclado: TextInputType.emailAddress,
-              ),
+                CampoTexto(
+                  nomeCampo: 'Email',
+                  icone: const Icon(Icons.email),
+                  onSaved: (String? value) {
+                    _email = value!.trim();
+                  },
+                  tamanhoMinimo: 10,
+                  ehEmail: true,
+                  modoTeclado: TextInputType.emailAddress,
+                ),
 
-              const SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
 
-              //Botão de submit
-              BotaoPersonalizado(
-                onPressed: _submit,
-                corPrincipal: Colors.white,
-                texto: state.statusSignIn == StatusSignIn.submetendo
-                    ? 'Carregando...'
-                    : 'Resetar Senha',
-                corBorda: Colors.white,
-                cortexto: Colors.black,
-              ),
-            ].reversed.toList(),
+                //Botão de submit
+                BotaoPersonalizado(
+                  onPressed: _submit,
+                  corPrincipal: Colors.white,
+                  texto: state.statusSignIn == StatusSignIn.submetendo
+                      ? 'Carregando...'
+                      : 'Resetar Senha',
+                  corBorda: Colors.white,
+                  cortexto: Colors.black,
+                ),
+              ].reversed.toList(),
+            ),
           ),
         );
       },

@@ -31,31 +31,31 @@ class _PaginaPerfil extends State<PaginaPerfil> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
-        body: BlocConsumer<PerfilCubit, PerfilState>(
-          listener: (context, state) {
-            if (state.statusPerfil == StatusPerfil.erro) {
-              dialogoErro(context, state.erro);
-            } else if (state.statusPerfil == StatusPerfil.atualizado) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    "Usuário atualizado com sucesso!",
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
+          body: BlocConsumer<PerfilCubit, PerfilState>(
+            listener: (context, state) {
+              if (state.statusPerfil == StatusPerfil.erro) {
+                dialogoErro(context, state.erro);
+              } else if (state.statusPerfil == StatusPerfil.atualizado) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "Usuário atualizado com sucesso!",
+                    ),
                   ),
-                ),
-              );
-            }
-          },
-          builder: (context, state) {
-            if (state.statusPerfil == StatusPerfil.inicial) {
-              return Container();
-            } else if (state.statusPerfil == StatusPerfil.carregando) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state.statusPerfil == StatusPerfil.erro) {
-              return Center(
-                child: Column(
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state.statusPerfil == StatusPerfil.inicial) {
+                return Container();
+              } else if (state.statusPerfil == StatusPerfil.carregando) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.statusPerfil == StatusPerfil.erro) {
+                return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -74,56 +74,52 @@ class _PaginaPerfil extends State<PaginaPerfil> {
                       ),
                     ),
                   ],
+                );
+              }
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25.0,
+                ),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(Icons.keyboard_return),
+                            color: Colors.white,
+                            iconSize: 35.0,
+                          ),
+                          const SizedBox(width: 15.0),
+                          const Text(
+                            "Perfil",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: FormularioPerfil(
+                          usuarioPadrao: state.usuario,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20.0),
+                  ],
                 ),
               );
-            }
-            return SafeArea(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 25.0,
-                  ),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(Icons.keyboard_return),
-                              color: Colors.white,
-                              iconSize: 35.0,
-                            ),
-                            const SizedBox(width: 15.0),
-                            const Text(
-                              "Perfil",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 35.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: FormularioPerfil(
-                            usuarioPadrao: state.usuario,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20.0),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
+            },
+          ),
         ),
       ),
     );
