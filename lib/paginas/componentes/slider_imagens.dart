@@ -36,7 +36,7 @@ class SliderDeImagens extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
-                child: Image.network(item, fit: BoxFit.fitHeight),
+                child: Image.network(item, fit: BoxFit.fitWidth),
               ),
             ),
           )

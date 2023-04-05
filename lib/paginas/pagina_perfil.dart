@@ -78,8 +78,7 @@ class _PaginaPerfil extends State<PaginaPerfil> {
               }
               return Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 25.0,
-                ),
+                    horizontal: 25.0, vertical: 15.0),
                 child: Column(
                   children: [
                     Align(
@@ -106,15 +105,12 @@ class _PaginaPerfil extends State<PaginaPerfil> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 20.0),
                     Expanded(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: FormularioPerfil(
-                          usuarioPadrao: state.usuario,
-                        ),
+                      child: FormularioPerfil(
+                        usuarioPadrao: state.usuario,
                       ),
                     ),
-                    const SizedBox(height: 20.0),
                   ],
                 ),
               );

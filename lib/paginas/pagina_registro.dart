@@ -28,70 +28,41 @@ class _PaginaRegistroState extends State<PaginaRegistro> {
           }
         },
         builder: (context, state) {
-          return Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
-            body: SafeArea(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 25.0,
+          return SafeArea(
+            child: Scaffold(
+              resizeToAvoidBottomInset: true,
+              backgroundColor: const Color.fromRGBO(227, 23, 10, 1),
+              body: Column(
+                children: const [
+                  //Cabeçalho com a marca
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 15.0,
+                        horizontal: 25.0,
+                      ),
+                      child: MarcaDoApp(),
+                    ),
                   ),
-                  child: Column(
-                    children: [
-                      //Marca do app
-                      const Expanded(
-                        flex: 1,
-                        child: MarcaDoApp(),
+
+                  SizedBox(height: 30.0),
+
+                  //Slider com imagens de marmitas
+                  SliderDeImagens(),
+
+                  SizedBox(height: 30.0),
+
+                  //Formulário de login
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 25.0,
                       ),
-
-                      const Expanded(
-                        flex: 4,
-                        child: SliderDeImagens(),
-                      ),
-
-                      Expanded(
-                        flex: 5,
-                        child: Column(
-                          children: const [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Cadastre-se",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 35.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-
-                            SizedBox(height: 25.0),
-
-                            //Formulário de Registro
-                            FormularioRegistroUsuario(),
-                          ],
-                        ),
-                      ),
-
-                      //Botão para a página de login
-                      Expanded(
-                        flex: 1,
-                        child: RodapeLoginSignup(
-                          textoMensagem: "Já é membro?",
-                          textoBotao: "Entre aqui",
-                          onPressed:
-                              state.statusSignUp == StatusSignUp.submetendo
-                                  ? () {}
-                                  : () {
-                                      Navigator.pop(context);
-                                    },
-                          corTexto: Colors.white,
-                        ),
-                      ),
-                    ],
+                      child: FormularioRegistroUsuario(),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           );

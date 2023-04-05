@@ -1,6 +1,7 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/rodape_login_signup.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,9 +51,22 @@ class FormularioRegistroUsuarioState extends State<FormularioRegistroUsuario> {
             key: _formKey,
             autovalidateMode: _autovalidateMode,
             child: ListView(
-              reverse: true,
               shrinkWrap: true,
               children: [
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Cadastre-se",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 25.0),
+
                 //Campo de email
                 CampoTexto(
                   nomeCampo: 'Email',
@@ -120,7 +134,20 @@ class FormularioRegistroUsuarioState extends State<FormularioRegistroUsuario> {
                   corBorda: Colors.white,
                   cortexto: Colors.black,
                 ),
-              ].reversed.toList(),
+
+                const SizedBox(height: 20.0),
+
+                RodapeLoginSignup(
+                  textoMensagem: "Já é membro?",
+                  textoBotao: "Entre aqui",
+                  onPressed: state.statusSignUp == StatusSignUp.submetendo
+                      ? () {}
+                      : () {
+                          Navigator.pop(context);
+                        },
+                  corTexto: Colors.white,
+                )
+              ],
             ),
           ),
         );

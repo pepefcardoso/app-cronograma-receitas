@@ -26,6 +26,7 @@ class FormularioPerfilState extends State<FormularioPerfil> {
 
   @override
   void initState() {
+    super.initState();
     _fotoPerfilController = TextEditingController(
         text: context.read<PerfilCubit>().state.usuario.fotoPerfil);
   }
@@ -74,11 +75,14 @@ class FormularioPerfilState extends State<FormularioPerfil> {
               shrinkWrap: true,
               children: [
                 //Campo de email
-                SelecionaImagem(
-                    id: state.usuario.id,
-                    urlFotoPerfilController: _fotoPerfilController),
+                Align(
+                  alignment: Alignment.center,
+                  child: SelecionaImagem(
+                      id: state.usuario.id,
+                      urlFotoPerfilController: _fotoPerfilController),
+                ),
 
-                const SizedBox(height: 40.0),
+                const SizedBox(height: 30.0),
 
                 //Campo de email
                 CampoTexto(
@@ -95,7 +99,7 @@ class FormularioPerfilState extends State<FormularioPerfil> {
 
                 //Campo de email
                 CampoTexto(
-                  nomeCampo: 'Nascimento',
+                  nomeCampo: 'Data de Nascimento',
                   valorInicial: state.usuario.dataNascimento,
                   icone: const Icon(Icons.calendar_month),
                   onSaved: (String? value) {

@@ -38,9 +38,12 @@ class _PaginaLoginState extends State<PaginaLogin> {
                 ),
 
                 //Slider com imagens de marmitas
-                Expanded(
-                  child: SliderDeImagens(),
-                ),
+                SizedBox(height: 30.0),
+
+                //Slider com imagens de marmitas
+                SliderDeImagens(),
+
+                SizedBox(height: 30.0),
 
                 //Formulário de login
                 Expanded(
