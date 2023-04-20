@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
 import 'package:app_cronograma_receitas/modelos/erro_personalizado.dart';
 import 'package:app_cronograma_receitas/modelos/usuario.dart';
 import 'package:app_cronograma_receitas/repositorios/perfil.dart';
@@ -44,6 +46,7 @@ class PerfilCubit extends Cubit<PerfilState> {
   Future<void> atualizaPerfil({
     required String uid,
     required Map<String, dynamic> info,
+    File? fotoPerfil,
   }) async {
     emit(
       state.copyWith(
@@ -52,6 +55,15 @@ class PerfilCubit extends Cubit<PerfilState> {
     );
 
     try {
+      if (fotoPerfil != null) {
+        final urlFotoPerfil = await repositorioPerfil.salvaFotoPerfil(
+          uid: uid,
+          foto: fotoPerfil,
+        );
+
+        info["foto_perfil"] = urlFotoPerfil;
+      }
+
       final Usuario usuario = await repositorioPerfil.atualizaPerfil(
         uid: uid,
         info: info,

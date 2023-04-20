@@ -1,7 +1,6 @@
 import 'package:app_cronograma_receitas/blocs/sign_up/signup_cubit.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/formulario_registro.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/marca_do_app.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/rodape_login_signup.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/slider_imagens.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';

@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:app_cronograma_receitas/blocs/perfil/perfil_cubit.dart';
+import 'package:app_cronograma_receitas/constantes/constantes_db.dart';
 import 'package:app_cronograma_receitas/modelos/modelos.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
-import 'package:app_cronograma_receitas/paginas/componentes/seleciona_imagem.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/foto_de_perfil.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,22 +23,22 @@ class FormularioPerfil extends StatefulWidget {
 }
 
 class FormularioPerfilState extends State<FormularioPerfil> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
-  late String? _nome, _dataNascimento, _telefone;
-  late final TextEditingController _fotoPerfilController;
+  late TextEditingController fotoPerfilController;
 
-  @override
-  void initState() {
-    super.initState();
-    _fotoPerfilController = TextEditingController(
-        text: context.read<PerfilCubit>().state.usuario.fotoPerfil);
-  }
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late String? _nome, _dataNascimento, _telefone;
 
   @override
   void dispose() {
-    _fotoPerfilController.dispose();
+    fotoPerfilController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    fotoPerfilController = TextEditingController();
+    super.initState();
   }
 
   void _submit() {
@@ -51,15 +55,15 @@ class FormularioPerfilState extends State<FormularioPerfil> {
     final String uid = context.read<PerfilCubit>().state.usuario.id;
 
     context.read<PerfilCubit>().atualizaPerfil(
-      uid: uid,
-      info: {
-        // "foto_perfil": _fotoPerfil,
-        "nome": _nome,
-        "data_nascimento": _dataNascimento,
-        "foto_perfil": _fotoPerfilController.text,
-        "telefone": _telefone,
-      },
-    );
+        uid: uid,
+        info: {
+          "nome": _nome,
+          "data_nascimento": _dataNascimento,
+          "telefone": _telefone,
+        },
+        fotoPerfil: fotoPerfilController.text == ""
+            ? null
+            : File(fotoPerfilController.text));
   }
 
   @override
@@ -77,9 +81,10 @@ class FormularioPerfilState extends State<FormularioPerfil> {
                 //Campo de email
                 Align(
                   alignment: Alignment.center,
-                  child: SelecionaImagem(
-                      id: state.usuario.id,
-                      urlFotoPerfilController: _fotoPerfilController),
+                  child: FotoDePerfil(
+                    fotoPerfilUrl: state.usuario.fotoPerfil,
+                    imagemPathController: fotoPerfilController,
+                  ),
                 ),
 
                 const SizedBox(height: 30.0),

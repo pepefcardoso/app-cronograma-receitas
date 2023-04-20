@@ -1,25 +1,24 @@
 import 'dart:io';
-
-import 'package:app_cronograma_receitas/constantes/constantes_db.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class SelecionaImagem extends StatefulWidget {
-  const SelecionaImagem({
-    required this.urlFotoPerfilController,
-    required this.id,
+class FotoDePerfil extends StatefulWidget {
+  const FotoDePerfil({
     super.key,
+    required this.fotoPerfilUrl,
+    required this.imagemPathController,
   });
 
-  final TextEditingController urlFotoPerfilController;
-  final String id;
+  final String? fotoPerfilUrl;
+  final TextEditingController imagemPathController;
 
   @override
-  State<SelecionaImagem> createState() => _SelecionaImagemState();
+  State<FotoDePerfil> createState() => _FotoDePerfilState();
 }
 
-class _SelecionaImagemState extends State<SelecionaImagem> {
+class _FotoDePerfilState extends State<FotoDePerfil> {
+  XFile? imagemDaGaleria;
+
   void selecionaImagemGaleria() async {
     final imagemSelecionada = await ImagePicker().pickImage(
       source: ImageSource.gallery,
@@ -28,16 +27,12 @@ class _SelecionaImagemState extends State<SelecionaImagem> {
       imageQuality: 90,
     );
 
-    Reference ref =
-        referenciaImagens.ref().child("perfil_cliente_${widget.id}.jpg");
-
-    await ref.putFile(File(imagemSelecionada!.path));
-
-    ref.getDownloadURL().then((value) async {
+    if (imagemSelecionada != null) {
       setState(() {
-        widget.urlFotoPerfilController.text = value;
+        imagemDaGaleria = imagemSelecionada;
+        widget.imagemPathController.text = imagemSelecionada.path;
       });
-    });
+    }
   }
 
   @override
@@ -49,7 +44,11 @@ class _SelecionaImagemState extends State<SelecionaImagem> {
           radius: 176,
           child: CircleAvatar(
             radius: 170,
-            backgroundImage: NetworkImage(widget.urlFotoPerfilController.text),
+            backgroundColor: Colors.white,
+            backgroundImage: imagemDaGaleria != null
+                ? FileImage(File(imagemDaGaleria!.path)) as ImageProvider
+                : NetworkImage(widget.fotoPerfilUrl ??
+                    "https://cdn-icons-png.flaticon.com/512/118/118174.png?w=826&t=st=1682012779~exp=1682013379~hmac=675bd67fb8221ed496e42139bfae3483ec568c2701db4ad676b60aca8c94bf4f"),
           ),
         ),
         GestureDetector(
@@ -77,6 +76,3 @@ class _SelecionaImagemState extends State<SelecionaImagem> {
     );
   }
 }
-
-//https://github.com/Bytx-youtube/profilepicflutter/blob/main/profilescreen2.dart
-//https://www.uplabs.com/posts/change-profile-picture-ui-5e4e9d0c-6f9b-49ac-8828-e52ed5d5aec0

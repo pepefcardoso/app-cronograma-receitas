@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/_flutterfire_internals-1.1.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/_flutterfire_internals-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -45,19 +45,19 @@
     },
     {
       "name": "cloud_firestore",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-4.5.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-4.5.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_platform_interface",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_platform_interface-5.12.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_platform_interface-5.12.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_web",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-3.4.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-3.4.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -93,43 +93,43 @@
     },
     {
       "name": "firebase_analytics",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-10.2.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-10.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_analytics_platform_interface",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_analytics_platform_interface-3.4.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_analytics_platform_interface-3.4.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_analytics_web",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_analytics_web-0.5.2",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_analytics_web-0.5.2+1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_auth-4.4.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_auth-4.4.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth_platform_interface",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.13.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.13.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-5.3.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-5.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_core-2.9.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_core-2.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -147,37 +147,37 @@
     },
     {
       "name": "firebase_database",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_database-10.1.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_database-10.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_database_platform_interface",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_database_platform_interface-0.2.3",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_database_platform_interface-0.2.3+1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_database_web",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_database_web-0.2.2",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_database_web-0.2.2+1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_storage-11.1.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_storage-11.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage_platform_interface",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_storage_platform_interface-4.2.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_storage_platform_interface-4.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage_web",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_storage_web-3.4.0",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/firebase_storage_web-3.4.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -219,7 +219,7 @@
     },
     {
       "name": "go_router",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/go_router-6.5.3",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/go_router-6.5.7",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -237,15 +237,15 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.7+1",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.7+3",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker_android-0.8.6+6",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker_android-0.8.6+7",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "image_picker_for_web",
@@ -255,7 +255,7 @@
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker_ios-0.8.7+2",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker_ios-0.8.7+3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -404,7 +404,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-04-05T20:56:43.057773Z",
+  "generated": "2023-04-20T20:56:34.887810Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }
