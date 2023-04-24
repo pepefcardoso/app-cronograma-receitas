@@ -40,19 +40,19 @@ class Receita extends Equatable {
 
     return Receita(
       id: docReceita.id,
-      nome: docReceita['nome'],
-      ingredientes: docReceita['ingredientes'],
-      etapas: docReceita['etapas'],
-      tempoPreparo: docReceita['tempo_preparo'],
-      peso: docReceita['peso'],
-      calorias: docReceita['calorias'],
-      urlImagem: docReceita['url_imagem'],
-      idAutor: docReceita['id_autor'],
-      categorias: docReceita['categorias'],
-      vegetariana: docReceita['vegetariana'],
-      vegana: docReceita['vegana'],
-      semGluten: docReceita['sem_gluten'],
-      semLactose: docReceita['sem_lactose'],
+      nome: dadosreceita!['nome'],
+      ingredientes: dadosreceita['ingredientes'],
+      etapas: dadosreceita['etapas'],
+      tempoPreparo: dadosreceita['tempo_preparo'],
+      peso: dadosreceita['peso'],
+      calorias: dadosreceita['calorias'],
+      urlImagem: dadosreceita['url_imagem'],
+      idAutor: dadosreceita['id_autor'],
+      categorias: dadosreceita['categorias'],
+      vegetariana: dadosreceita['vegetariana'],
+      vegana: dadosreceita['vegana'],
+      semGluten: dadosreceita['sem_gluten'],
+      semLactose: dadosreceita['sem_lactose'],
     );
   }
 

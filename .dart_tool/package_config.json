@@ -219,7 +219,7 @@
     },
     {
       "name": "go_router",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/go_router-6.5.7",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/go_router-6.5.8",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -237,7 +237,7 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.7+3",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.7+4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -404,7 +404,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-04-20T20:56:34.887810Z",
+  "generated": "2023-04-24T20:56:55.180602Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }

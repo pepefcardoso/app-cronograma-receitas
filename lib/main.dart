@@ -1,5 +1,4 @@
 import 'package:app_cronograma_receitas/paginas/pagina_esqueceu_senha.dart';
-import 'package:app_cronograma_receitas/repositorios/receitas.dart';
 
 import 'blocs/autenticacao/autenticacao_bloc.dart';
 import 'blocs/perfil/perfil_cubit.dart';

@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:app_cronograma_receitas/blocs/perfil/perfil_cubit.dart';
-import 'package:app_cronograma_receitas/constantes/constantes_db.dart';
 import 'package:app_cronograma_receitas/modelos/modelos.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.dart';
+import 'package:app_cronograma_receitas/paginas/componentes/campo_data.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/foto_de_perfil.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +22,7 @@ class FormularioPerfil extends StatefulWidget {
 }
 
 class FormularioPerfilState extends State<FormularioPerfil> {
-  late TextEditingController fotoPerfilController;
+  late TextEditingController fotoPerfilController, dataNascimentoController;
 
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -32,12 +31,15 @@ class FormularioPerfilState extends State<FormularioPerfil> {
   @override
   void dispose() {
     fotoPerfilController.dispose();
+    dataNascimentoController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     fotoPerfilController = TextEditingController();
+    dataNascimentoController =
+        TextEditingController(text: DateTime(2001).toString());
     super.initState();
   }
 
@@ -103,15 +105,13 @@ class FormularioPerfilState extends State<FormularioPerfil> {
                 const SizedBox(height: 20.0),
 
                 //Campo de email
-                CampoTexto(
+                CampoData(
                   nomeCampo: 'Data de Nascimento',
-                  valorInicial: state.usuario.dataNascimento,
+                  controller: dataNascimentoController,
                   icone: const Icon(Icons.calendar_month),
-                  onSaved: (String? value) {
+                  /*onSaved: (String? value) {
                     _dataNascimento = value!.trim();
-                  },
-                  tamanhoMinimo: 8,
-                  modoTeclado: TextInputType.datetime,
+                  },*/
                 ),
 
                 const SizedBox(height: 20.0),
