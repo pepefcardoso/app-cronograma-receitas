@@ -22,24 +22,22 @@ class FormularioPerfil extends StatefulWidget {
 }
 
 class FormularioPerfilState extends State<FormularioPerfil> {
-  late TextEditingController fotoPerfilController, dataNascimentoController;
+  late TextEditingController fotoPerfilController;
 
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late String? _nome, _dataNascimento, _telefone;
+  late String? _nome, _telefone;
+  late DateTime? _dataNascimento;
 
   @override
   void dispose() {
     fotoPerfilController.dispose();
-    dataNascimentoController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     fotoPerfilController = TextEditingController();
-    dataNascimentoController =
-        TextEditingController(text: DateTime(2001).toString());
     super.initState();
   }
 
@@ -106,12 +104,12 @@ class FormularioPerfilState extends State<FormularioPerfil> {
 
                 //Campo de email
                 CampoData(
-                  nomeCampo: 'Data de Nascimento',
-                  controller: dataNascimentoController,
+                  nome: 'Data de Nascimento',
                   icone: const Icon(Icons.calendar_month),
-                  /*onSaved: (String? value) {
-                    _dataNascimento = value!.trim();
-                  },*/
+                  onSaved: (DateTime? value) {
+                    if (value != null) _dataNascimento = value;
+                  },
+                  valorInicial: state.usuario.dataNascimento,
                 ),
 
                 const SizedBox(height: 20.0),

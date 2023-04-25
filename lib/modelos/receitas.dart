@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 class Receita extends Equatable {
   final String id;
   final String nome;
-  final List<String> ingredientes;
+  final Map<String, int> ingredientes;
   final List<String>? etapas;
   final int? tempoPreparo;
   final int? peso;
@@ -60,7 +60,7 @@ class Receita extends Equatable {
     return const Receita(
       id: '',
       nome: '',
-      ingredientes: [],
+      ingredientes: {},
       etapas: null,
       tempoPreparo: null,
       peso: null,

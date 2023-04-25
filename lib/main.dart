@@ -1,5 +1,3 @@
-import 'package:app_cronograma_receitas/paginas/pagina_esqueceu_senha.dart';
-
 import 'blocs/autenticacao/autenticacao_bloc.dart';
 import 'blocs/perfil/perfil_cubit.dart';
 import 'blocs/sign_in/signin_cubit.dart';

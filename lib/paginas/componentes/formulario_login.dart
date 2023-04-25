@@ -3,7 +3,6 @@ import 'package:app_cronograma_receitas/paginas/componentes/botao_personalizado.
 import 'package:app_cronograma_receitas/paginas/componentes/botao_texto_personalizado.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/campo_texto.dart';
 import 'package:app_cronograma_receitas/paginas/componentes/rodape_login_signup.dart';
-import 'package:app_cronograma_receitas/paginas/pagina_esqueceu_senha.dart';
 import 'package:app_cronograma_receitas/paginas/paginas.dart';
 import 'package:app_cronograma_receitas/utils/dialogo_erro.dart';
 import 'package:flutter/material.dart';

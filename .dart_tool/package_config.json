@@ -80,6 +80,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "date_field",
+      "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/date_field-3.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///home/pedro/.pub-cache/hosted/pub.dartlang.org/equatable-2.0.5",
       "packageUri": "lib/",
@@ -404,7 +410,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-04-24T20:56:55.180602Z",
+  "generated": "2023-04-25T20:41:14.313560Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }

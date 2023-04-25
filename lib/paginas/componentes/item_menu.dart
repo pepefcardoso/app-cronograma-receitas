@@ -2,34 +2,62 @@ import 'package:flutter/material.dart';
 
 class ItemMenu extends StatelessWidget {
   const ItemMenu({
-    required this.nome,
-    required this.imagem,
+    this.nome = "",
+    this.imagem = 'assets/images/refeicao_amigos.jpg',
     super.key,
   });
 
-  final String nome;
-  final String imagem;
+  final String? nome;
+  final String? imagem;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      splashColor: Theme.of(context).colorScheme.primary,
-      borderRadius: BorderRadius.circular(15),
-      child: Container(
-        decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 20.0, // Soften the shaodw
-              spreadRadius: 2.0,
-              offset: Offset(0.0, 0.0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 5,
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  child: Image.asset(
+                    imagem!,
+                    height: 200,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  child: Container(
+                    width: 240,
+                    color: Colors.black87,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 6,
+                    ),
+                    child: Text(
+                      nome!,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20.0),
-          child: Image.network(imagem, fit: BoxFit.cover),
         ),
       ),
     );

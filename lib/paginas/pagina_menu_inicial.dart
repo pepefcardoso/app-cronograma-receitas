@@ -67,29 +67,16 @@ class _PaginaMenuInicial extends State<PaginaMenuInicial> {
                     child: ListView(
                       children: const [
                         ItemMenu(
-                          nome: "teste_1",
-                          imagem:
-                              "https://images.unsplash.com/photo-1543352632-5a4b24e4d2a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80",
-                        ),
+                            nome: "Receitas",
+                            imagem: 'assets/images/refeicao_amigos.jpg'),
                         SizedBox(height: 20.0),
                         ItemMenu(
-                          nome: "teste_2",
-                          imagem:
-                              "https://images.unsplash.com/photo-1543352632-5a4b24e4d2a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80",
-                        ),
+                            nome: "Ingredientes",
+                            imagem: 'assets/images/marmitas.jpg'),
                         SizedBox(height: 20.0),
                         ItemMenu(
-                          nome: "teste_3",
-                          imagem:
-                              "https://images.unsplash.com/photo-1543352632-5a4b24e4d2a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80",
-                        ),
-                        SizedBox(height: 20.0),
-                        ItemMenu(
-                          nome: "teste_1",
-                          imagem:
-                              "https://images.unsplash.com/photo-1543352632-5a4b24e4d2a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80",
-                        ),
-                        SizedBox(height: 20.0),
+                            nome: "Cronogramas",
+                            imagem: 'assets/images/refeicao_amigos.jpg'),
                       ],
                     ),
                   )

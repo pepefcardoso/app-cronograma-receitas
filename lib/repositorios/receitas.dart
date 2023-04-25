@@ -12,7 +12,7 @@ class RepositorioReceitas {
 
   Future<void> cadastraReceita({
     required String nome,
-    required List<String> ingredientes,
+    required Map<String, int> ingredientes,
     required String idAutor,
     required bool vegetariana,
     required bool vegana,
@@ -44,7 +44,7 @@ class RepositorioReceitas {
     }
   }
 
-  Future<Receita> buscaReceita({required String uid}) async {
+  Future<Receita> buscaReceitasUsuario({required String uid}) async {
     try {
       final DocumentSnapshot docReceita =
           await referenciaReceitas.doc(uid).get();

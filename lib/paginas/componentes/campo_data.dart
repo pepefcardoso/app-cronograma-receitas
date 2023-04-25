@@ -1,71 +1,73 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:validators/validators.dart';
 
-class CampoData extends StatefulWidget {
+class CampoData extends StatelessWidget {
   const CampoData({
-    required this.nomeCampo,
-    required this.icone,
+    Key? key,
     this.onSaved,
-    this.controller,
-    super.key,
-  });
+    this.validacao,
+    this.valorInicial,
+    this.autovalidateMode,
+    this.habilitado = true,
+    this.formatoData,
+    this.estilo,
+    required this.nome,
+    required this.icone,
+    this.modoSelecaoData = DateTimeFieldPickerMode.date,
+  }) : super(key: key);
 
+  final void Function(DateTime?)? onSaved;
+  final String? Function(DateTime?)? validacao;
+  final DateTime? valorInicial;
+  final AutovalidateMode? autovalidateMode;
+  final bool? habilitado;
+  final DateFormat? formatoData;
+  final InputDecoration? estilo;
+  final String nome;
   final Icon icone;
+  final DateTimeFieldPickerMode? modoSelecaoData;
 
-  final String nomeCampo;
-  final void Function(String?)? onSaved;
-  final TextEditingController? controller;
-
-  @override
-  State<CampoData> createState() => _CampoDataState();
-}
-
-class _CampoDataState extends State<CampoData> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        DateTime? pickedDate = await showDatePicker(
-            context: context,
-            initialDate: DateTime.now(), //get today's date
-            firstDate: DateTime(
-                2000), //DateTime.now() - not to allow to choose before today.
-            lastDate: DateTime(2101));
-        if (pickedDate != null) {
-          print(
-              pickedDate); //get the picked date in the format => 2022-07-04 00:00:00.000
-          String formattedDate = DateFormat('yyyy-MM-dd').format(
-              pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
-          print(
-              formattedDate); //formatted date output using intl package =>  2022-07-04
-          //You can format date as per your need
-
-          setState(() {
-            widget.controller!.text =
-                formattedDate; //set foratted date to TextField value.
-          });
-        } else {
-          print("Date is not selected");
-        }
+    return DateTimeFormField(
+      use24hFormat: true,
+      onSaved: onSaved,
+      validator: validacao ?? validateField,
+      initialValue: valorInicial,
+      initialDate: valorInicial,
+      autovalidateMode: autovalidateMode,
+      enabled: habilitado!,
+      dateFormat: formatoData ?? DateFormat('dd/MM/yyyy'),
+      decoration: estilo ??
+          InputDecoration(
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.shade400),
+            ),
+            filled: true,
+            fillColor: Colors.grey.shade200,
+            hintText: nome,
+            prefixIcon: icone,
+          ),
+      mode: modoSelecaoData!,
+      onDateSelected: (DateTime value) {
+        debugPrint(value.toString());
       },
-      child: TextFormField(
-        enabled: false,
-        controller: widget.controller,
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade400),
-          ),
-          filled: true,
-          fillColor: Colors.grey.shade200,
-          hintText: widget.nomeCampo,
-          prefixIcon: widget.icone,
-        ),
-        onSaved: widget.onSaved,
-      ),
     );
+  }
+
+  String? validateField(DateTime? value) {
+    if (value == null) {
+      return '$nome é obrigatório';
+    } else if (!isDate(value.toString())) {
+      return 'Insira uma data válida';
+    }
+    return null;
   }
 }
